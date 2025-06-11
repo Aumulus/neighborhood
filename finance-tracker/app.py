@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+import os
 
 app = Flask(__name__)
 
@@ -49,4 +50,7 @@ if __name__ == '__main__':
     print("\nRegistered routes:")
     for rule in app.url_map.iter_rules():
         print(rule)
-    app.run(host='0.0.0.0', port=10000, debug=True)
+    
+    # For local or Render deployment
+    port = int(os.environ.get('PORT', 10000))
+    app.run(host='0.0.0.0', port=port, debug=True)
