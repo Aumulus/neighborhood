@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finora Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #f5f8fb;
+      --form-bg: #ffffff;
+      --primary-color: #2b6cb0;
+      --primary-hover: #1a4f84;
+      --accent-color: #edf2f7;
+      --text-color: #2d3748;
+      --border-color: #e2e8f0;
+      --radius: 12px;
+      --shadow-color: rgba(43, 108, 176, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 1rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background-color: var(--form-bg);
+      padding: 2.5rem 2rem 3rem;
+      box-shadow: 0 10px 25px var(--shadow-color);
+      border-radius: var(--radius);
+      transition: box-shadow 0.3s ease;
+    }
+    .container:hover {
+      box-shadow: 0 15px 40px rgba(43, 108, 176, 0.45);
+    }
+
+    h2 {
+      margin-bottom: 2rem;
+      font-weight: 700;
+      text-align: center;
+      color: var(--primary-color);
+      letter-spacing: 0.05em;
+      user-select: none;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #374151; /* Slightly darker text */
+      user-select: none;
+    }
+
+    input {
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.5rem;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+      outline-offset: 2px;
+    }
+    input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 8px var(--primary-color);
+      outline: none;
+    }
+
+    button {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 0.85rem 1rem;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    button:hover,
+    button:focus {
+      background-color: var(--primary-hover);
+      box-shadow: 0 6px 15px rgba(26, 79, 132, 0.6);
+      outline: none;
+    }
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 1.75rem;
+      font-size: 0.9rem;
+      color: #4b5563;
+      user-select: none;
+    }
+    .footer a {
+      color: var(--primary-color);
+      font-weight: 600;
+      text-decoration: none;
+      transition: text-decoration 0.3s ease;
+    }
+    .footer a:hover,
+    .footer a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="Login form">
+    <h2>Welcome to Finora</h2>
+    <form action="/login" method="post" autocomplete="off" novalidate>
+      <label for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Enter your username"
+        required
+        aria-required="true"
+        autocomplete="username"
+        autofocus
+      />
+
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter your password"
+        required
+        aria-required="true"
+        autocomplete="current-password"
+      />
+
+      <button type="submit" aria-label="Log in to your Finora account">Login</button>
+    </form>
+
+    <div class="footer">
+      <p>Don't have an account? <a href="/signup">Sign up here</a>.</p>
+    </div>
+  </div>
+</body>
+</html>

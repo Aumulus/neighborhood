@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finora - Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #f0f4f8;
+      --form-bg: #fff;
+      --primary-color: #2563eb;
+      --primary-hover: #1e40af;
+      --text-color: #1e293b;
+      --border-color: #cbd5e1;
+      --radius: 10px;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: var(--text-color);
+    }
+    .container {
+      background: var(--form-bg);
+      padding: 2.5rem 2rem;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 420px;
+    }
+    h2 {
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+    input {
+      padding: 0.8rem 1rem;
+      margin-bottom: 1.25rem;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    input:focus {
+      border-color: var(--primary-color);
+      outline: none;
+    }
+    button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.85rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: var(--primary-hover);
+    }
+    .footer {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Create your Finora account</h2>
+    <form method="POST" action="{{ url_for('signup') }}">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Choose a username" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Choose a strong password" required />
+
+      <button type="submit">Sign Up</button>
+    </form>
+    <div class="footer">
+      <p>Already have an account? <a href="{{ url_for('login') }}">Log in here</a>.</p>
+    </div>
+  </div>
+</body>
+</html>
