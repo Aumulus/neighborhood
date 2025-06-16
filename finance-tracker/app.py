@@ -1,19 +1,17 @@
-from flask import Flask, render_template, request, redirect, url_for
-import os
+from flask import Flask, render_template, request, redirect, url_for, session
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key_here'  # needed for session management, change this to something secret!
 
-# Dummy user database (replace with real DB in production)
+# Dummy user database
 users = {
-    'admin': 'admin'  # example user for testing
+    'admin': 'admin'
 }
 
-# Redirect root to login
 @app.route('/')
 def home():
     return redirect(url_for('login'))
 
-# Login page & form handling
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -21,12 +19,12 @@ def login():
         password = request.form.get('password')
 
         if username in users and users[username] == password:
-            return redirect(url_for('dashboard', username=username))
+            session['username'] = username
+            return redirect(url_for('dashboard'))
         else:
             return "Invalid credentials. Please go back and try again."
     return render_template('login.html')
 
-# Signup page & form handling
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
@@ -40,17 +38,17 @@ def signup():
             return redirect(url_for('login'))
     return render_template('signup.html')
 
-# Dashboard page
 @app.route('/dashboard')
 def dashboard():
-    username = request.args.get('username', 'user')
+    username = session.get('username')
+    if not username:
+        return redirect(url_for('login'))
     return f"<h1>Welcome to Finora, {username}!</h1>"
 
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('login'))
+
 if __name__ == '__main__':
-    print("\nRegistered routes:")
-    for rule in app.url_map.iter_rules():
-        print(rule)
-    
-    # For local or Render deployment
-    port = int(os.environ.get('PORT', 10000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=81)
