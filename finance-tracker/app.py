@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+import os
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'  # needed for session management, change this to something secret!
+app.secret_key = 'your_secret_key_here'  # Change this to a secure secret key!
 
 # Dummy user database
 users = {
@@ -51,4 +52,5 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=81)
+    port = int(os.environ.get('PORT', 81))  # Use Render's assigned port or default to 81
+    app.run(host='0.0.0.0', port=port)
