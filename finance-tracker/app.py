@@ -1,18 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from flask_mail import Mail, Message
 import os
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'  # Replace with a secure secret key
-
-# Email configuration — replace with your Gmail & app password
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'your_email@gmail.com'         # your Gmail address
-app.config['MAIL_PASSWORD'] = 'your_app_password'            # your Gmail App Password
-
-mail = Mail(app)
 
 # Users dictionary: email keys, store username & password
 users = {
@@ -56,17 +46,7 @@ def signup():
                 'password': password
             }
 
-            # Send welcome email
-            try:
-                msg = Message(
-                    subject='Welcome to Finora!',
-                    recipients=[email],
-                    body=f"Hi {username},\n\nThanks for signing up for Finora!\n\nYour login email: {email}"
-                )
-                mail.send(msg)
-                print(f"Sent welcome email to {email}")
-            except Exception as e:
-                print(f"Failed to send email: {e}")
+            # Email sending removed for simplicity
 
             return redirect(url_for('login'))
     return render_template('signup.html')
