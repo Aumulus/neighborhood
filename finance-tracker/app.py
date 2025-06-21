@@ -2,9 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import os
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'  # Replace with a secure secret key
+app.secret_key = 'your_secret_key_here'
 
-# Users dictionary: email keys, store username & password
 users = {
     'admin@example.com': {
         'username': 'admin',
@@ -12,7 +11,6 @@ users = {
     }
 }
 
-# New clean welcome landing page
 @app.route('/')
 def home():
     return render_template('welcome.html')
@@ -26,7 +24,7 @@ def login():
         user = users.get(email)
         if user and user['password'] == password:
             session['username'] = user['username']
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('welcome_user'))
         else:
             return "Invalid email or password. Please go back and try again."
     return render_template('login.html')
@@ -45,11 +43,15 @@ def signup():
                 'username': username,
                 'password': password
             }
-
-            # Email sending removed for simplicity
-
             return redirect(url_for('login'))
     return render_template('signup.html')
+
+@app.route('/welcome_user')
+def welcome_user():
+    username = session.get('username')
+    if not username:
+        return redirect(url_for('login'))
+    return render_template('welcome_user.html', username=username)
 
 @app.route('/dashboard')
 def dashboard():
