@@ -65,7 +65,7 @@
       margin-bottom: 0.5rem;
       font-weight: 600;
       font-size: 0.95rem;
-      color: #374151; /* Slightly darker text */
+      color: #374151;
       user-select: none;
     }
 
@@ -130,15 +130,15 @@
   <div class="container" role="main" aria-label="Login form">
     <h2>Welcome to Finora</h2>
     <form action="/login" method="post" autocomplete="off" novalidate>
-      <label for="username">Username</label>
+      <label for="email">Email</label>
       <input
-        type="text"
-        id="username"
-        name="username"
-        placeholder="Enter your username"
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter your email"
         required
         aria-required="true"
-        autocomplete="username"
+        autocomplete="email"
         autofocus
       />
 
