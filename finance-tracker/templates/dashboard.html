@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finora Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #0f172a; /* dark blue */
+      background-image: url('https://www.transparenttextures.com/patterns/triangles.png');
+      background-repeat: repeat;
+      background-size: auto;
+      color: #f8fafc; /* light gray text */
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+    }
+
+    .dashboard-container {
+      text-align: center;
+      background-color: rgba(15, 23, 42, 0.85); /* semi-transparent dark background */
+      padding: 2.5rem 3rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .dashboard-container h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .dashboard-container p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #cbd5e1;
+    }
+
+    .logout-btn {
+      background-color: #38bdf8;
+      color: #0f172a;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+    }
+
+    .logout-btn:hover {
+      background-color: #0ea5e9;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1>Welcome to Finora, {{ username }}!</h1>
+    <p>Track your finances. Control your future.</p>
+    <a href="{{ url_for('logout') }}" class="logout-btn">Log Out</a>
+  </div>
+</body>
+</html>
